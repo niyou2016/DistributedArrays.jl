@@ -160,9 +160,12 @@ function DArray(refs)
             for j in 1:(idx_in_dim-1)
                 prevsubidx = ntuple(y -> y == x ? j : subidx[y], length(subidx))
                 prevsize = nsizes[prevsubidx...]
-                startidx += prevsize[x]
+                # presize tuple is empty if reference is not to an array, e.g. a scalar
+                startidx += isempty(prevsize) ? 1 : prevsize[x]
             end
-            startidx:startidx+(nsizes[i][x])-1
+            nsizes[i]
+            # nsizes[i] tuple is empty if reference is not to an array, e.g. a scalar
+            startidx:startidx+(isempty(nsizes[i]) ? 1 : nsizes[i][x])-1
         end
     end
 

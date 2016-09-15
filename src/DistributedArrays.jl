@@ -1,4 +1,4 @@
-__precompile__(true)
+__precompile__()
 
 module DistributedArrays
 
@@ -11,8 +11,8 @@ import Base.BLAS: axpy!
 
 export (.+), (.-), (.*), (./), (.%), (.<<), (.>>), div, mod, rem, (&), (|), ($)
 export DArray, SubDArray, SubOrDArray, @DArray
-export dzeros, dones, dfill, drand, drandn, distribute, localpart, localindexes, ppeval, samedist
-export close, darray_closeall
+export close, darray_closeall, dfill, distribute, dones, drand, drandn, dzeros, localindexes,
+       localpart, map_localparts, ppeval, samedist
 
 include("core.jl")
 include("serialize.jl")
